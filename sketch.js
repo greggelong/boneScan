@@ -7,6 +7,7 @@ let fortune = "";
 let frameTrigger = 320;
 let cnv;
 let toggleM = false;
+let bs;
 
 let fortunes = [
   "Obey the algorithm.",
@@ -47,6 +48,9 @@ let chineseFortunes = [
   "命运已刻——裂缝证实你的轨迹已定。",
 ];
 
+function preload() {
+  bs = loadSound("scan.mp3");
+}
 function setup() {
   cnv = createCanvas(640, 480);
   let cx = (windowWidth - cnv.width) / 2;
@@ -88,8 +92,11 @@ function draw() {
 function keyPressed() {
   if (!toggleM) {
     toggleM = true;
+    bs.play();
+    bs.loop();
   } else {
     toggleM = false;
+    bs.stop();
   }
   return false;
 }
